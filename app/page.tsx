@@ -20,7 +20,7 @@ const steps = [
   {
     number: '1',
     title: 'Connect your Gmail',
-    body: 'Read-only access — we never send emails on your behalf.',
+    body: 'Read-only access - we never send emails on your behalf.',
   },
   {
     number: '2',

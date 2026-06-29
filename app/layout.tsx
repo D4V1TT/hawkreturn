@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HawkReturn — Never miss a return window again",
+  title: "HawkReturn - Never miss a return window again",
   description:
     "HawkReturn connects to your Gmail, finds every order confirmation, and alerts you before return deadlines expire.",
 };
