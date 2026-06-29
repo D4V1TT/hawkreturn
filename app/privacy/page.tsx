@@ -1,12 +1,11 @@
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 
 export default function PrivacyPolicy() {
   return (
     <div className="flex flex-col flex-1">
       <header className="px-6 py-6 sm:px-12">
-        <Link href="/" className="text-lg font-bold">
-          Hawk<span className="text-accent">Return</span>
-        </Link>
+        <Logo />
       </header>
 
       <main className="flex-1 px-6 py-12 sm:px-12">

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 import WaitlistForm from '@/components/WaitlistForm';
 
 const problemCards = [
@@ -38,9 +39,7 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1">
       <header className="px-6 py-6 sm:px-12">
-        <span className="text-lg font-bold">
-          Hawk<span className="text-accent">Return</span>
-        </span>
+        <Logo />
       </header>
 
       <main className="flex flex-1 flex-col">
