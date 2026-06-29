@@ -2,7 +2,7 @@ export type PurchaseStatus = 'active' | 'returned' | 'expired' | 'dismissed';
 
 export type NotificationType = '7_day' | '2_day' | 'day_of';
 
-export interface Profile {
+export type Profile = {
   id: string;
   email: string;
   full_name: string | null;
@@ -11,9 +11,9 @@ export interface Profile {
   token_expires_at: string | null;
   created_at: string;
   last_sync_at: string | null;
-}
+};
 
-export interface Purchase {
+export type Purchase = {
   id: string;
   user_id: string;
   retailer_name: string;
@@ -26,47 +26,123 @@ export interface Purchase {
   order_email_id: string | null;
   status: PurchaseStatus;
   created_at: string;
-}
+};
 
-export interface NotificationSent {
+export type NotificationSent = {
   id: string;
   purchase_id: string | null;
   user_id: string | null;
   notification_type: NotificationType | null;
   sent_at: string;
-}
+};
 
-export interface WaitlistEntry {
+export type WaitlistEntry = {
   id: string;
   email: string;
   created_at: string;
   source: string | null;
-}
+};
 
-export interface Database {
+export type Database = {
+  __InternalSupabase: {
+    PostgrestVersion: '12';
+  };
   public: {
     Tables: {
       profiles: {
         Row: Profile;
-        Insert: Partial<Profile> & Pick<Profile, 'id' | 'email'>;
-        Update: Partial<Profile>;
+        Insert: {
+          id: string;
+          email: string;
+          full_name?: string | null;
+          gmail_access_token?: string | null;
+          gmail_refresh_token?: string | null;
+          token_expires_at?: string | null;
+          created_at?: string;
+          last_sync_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          email?: string;
+          full_name?: string | null;
+          gmail_access_token?: string | null;
+          gmail_refresh_token?: string | null;
+          token_expires_at?: string | null;
+          created_at?: string;
+          last_sync_at?: string | null;
+        };
+        Relationships: [];
       };
       purchases: {
         Row: Purchase;
-        Insert: Partial<Purchase> &
-          Pick<Purchase, 'user_id' | 'retailer_name' | 'purchase_date' | 'return_deadline'>;
-        Update: Partial<Purchase>;
+        Insert: {
+          id?: string;
+          user_id: string;
+          retailer_name: string;
+          item_description?: string | null;
+          order_number?: string | null;
+          purchase_date: string;
+          return_deadline: string;
+          return_window_days?: number | null;
+          order_email_subject?: string | null;
+          order_email_id?: string | null;
+          status?: PurchaseStatus;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          retailer_name?: string;
+          item_description?: string | null;
+          order_number?: string | null;
+          purchase_date?: string;
+          return_deadline?: string;
+          return_window_days?: number | null;
+          order_email_subject?: string | null;
+          order_email_id?: string | null;
+          status?: PurchaseStatus;
+          created_at?: string;
+        };
+        Relationships: [];
       };
       notifications_sent: {
         Row: NotificationSent;
-        Insert: Partial<NotificationSent>;
-        Update: Partial<NotificationSent>;
+        Insert: {
+          id?: string;
+          purchase_id?: string | null;
+          user_id?: string | null;
+          notification_type?: NotificationType | null;
+          sent_at?: string;
+        };
+        Update: {
+          id?: string;
+          purchase_id?: string | null;
+          user_id?: string | null;
+          notification_type?: NotificationType | null;
+          sent_at?: string;
+        };
+        Relationships: [];
       };
       waitlist: {
         Row: WaitlistEntry;
-        Insert: Partial<WaitlistEntry> & Pick<WaitlistEntry, 'email'>;
-        Update: Partial<WaitlistEntry>;
+        Insert: {
+          id?: string;
+          email: string;
+          created_at?: string;
+          source?: string | null;
+        };
+        Update: {
+          id?: string;
+          email?: string;
+          created_at?: string;
+          source?: string | null;
+        };
+        Relationships: [];
       };
     };
+    Views: { [_ in never]: never };
+    Functions: { [_ in never]: never };
+    Enums: { [_ in never]: never };
+    CompositeTypes: { [_ in never]: never };
   };
 }
