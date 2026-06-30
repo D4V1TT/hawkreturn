@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import SessionProviderWrapper from "@/components/SessionProviderWrapper";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -61,7 +62,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
-        {children}
+        <SessionProviderWrapper>{children}</SessionProviderWrapper>
         <Analytics />
       </body>
     </html>

@@ -156,7 +156,7 @@ export default function Home() {
         }}
       />
 
-      <Nav />
+      <Nav showAuthButton />
 
       <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-6 sm:px-8">
         {/* HERO */}
