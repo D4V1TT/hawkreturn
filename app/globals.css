@@ -1,20 +1,109 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f0f0f;
-  --foreground: #ffffff;
-  --accent: #22c55e;
+  --background: #08090a;
+  --foreground: #eef1ef;
+  --accent: #2ee06b;
+  --accent-hover: #3cf078;
+  --accent-on: #06140b;
+  --accent-soft: #7ce3a4;
+  --surface: #0e1110;
+  --surface-inset: #0b0e0d;
+  --text-body: #9aa3a0;
+  --text-emphasis: #cfd6d3;
+  --text-muted: #6f7672;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(46, 224, 107, 0.3);
+  --warning: #ffb454;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-on: var(--accent-on);
+  --color-accent-soft: var(--accent-soft);
+  --color-surface: var(--surface);
+  --color-surface-inset: var(--surface-inset);
+  --color-text-body: var(--text-body);
+  --color-text-emphasis: var(--text-emphasis);
+  --color-text-muted: var(--text-muted);
+  --color-warning: var(--warning);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-bricolage);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(46, 224, 107, 0.3);
+  color: #fff;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+@keyframes hrGlow {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, 0) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, 0) scale(1.08); }
+}
+
+@keyframes hrFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes hrPulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 224, 107, 0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(46, 224, 107, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 224, 107, 0); }
+}
+
+@keyframes hrIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hr-glow {
+  animation: hrGlow 9s ease-in-out infinite;
+}
+
+.hr-float {
+  animation: hrFloat 7s ease-in-out infinite;
+}
+
+.hr-pulse {
+  animation: hrPulse 2.2s infinite;
+}
+
+[data-reveal].hr-pending {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+[data-reveal].hr-in {
+  animation: hrIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal].hr-pending {
+    opacity: 1;
+    transform: none;
+  }
+  [data-reveal].hr-in {
+    animation: none !important;
+  }
+  .hr-glow, .hr-float, .hr-pulse {
+    animation: none !important;
+  }
 }
